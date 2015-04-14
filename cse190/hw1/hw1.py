@@ -60,3 +60,14 @@ print theta
 
 ##2.1
 bData = list(parseData("http://jmcauley.ucsd.edu/cse255/data/amazon/book_descriptions_50000.json"))
+
+# p(romance)
+prior = ["Romance" in b['categories'] for b in bData]
+prior = sum(prior) * 1.0 / len(prior)
+#0.03198
+
+# p(mentions love | romance)
+p1 = ['love' in b['description'] for b in bData if "Romance" in b['categories']]
+p1 = sum(p1) * 1.0 / len(p1)
+
+#0.4878048
