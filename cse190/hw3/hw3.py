@@ -129,7 +129,7 @@ wordCount = 0
 rating = 0
 for d in data:
 	wordCount += len(d['reviewText'].split(' '))
-	rating += 
+	rating += d['rating']
 
 
 
