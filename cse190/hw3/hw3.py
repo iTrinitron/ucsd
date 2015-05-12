@@ -25,6 +25,7 @@ y = [l[2] for l in X]
 y = numpy.array(y)
 #Get mean of reviews
 ymean = y.mean()  ##ANSWER
+answer1 = ymean
 
 real = []
 full = []
@@ -40,9 +41,9 @@ for l in data:
 real = numpy.array(real)
 
 #MSE
-mse_data = numpy.array((ymean - real)**2)
-mse = sum(mse_data)  ##ANSWER
-
+mse_data = numpy.mean(numpy.array((ymean - real)**2))
+mse = mse_data  ##ANSWER
+answer2 = mse
 ##################################Problem 2#################################
 X = [(l['reviewerID'],l['rating']) for l in data]
 Y = [(l['itemID'],l['rating']) for l in data]
@@ -62,6 +63,7 @@ for i in res2:
 #ANSWER 2	
 ans2 = ymean + rez2['I102776733'] + rez['U566105319']
 #MSE
+answer3 = ans2
 
 #regular
 # for p in rez:
@@ -69,7 +71,8 @@ MSK = 0
 for f in full:
 	MSK += ((f[2] - (ymean + rez[f[0]] + rez2[f[1]]))**2) 
 #ANSWER
-print MSK
+MSK = MSK/len(full)
+answer4 = MSK
 
 ##################################Problem 3#################################
 #U229891973
@@ -90,7 +93,7 @@ def jax(u1,u2):
 	jacc = float(numCommon) / float(numUnion)
 	return jacc
 	
-print jax('U229891973', 'U622491081')# ANSWER PART A
+answer5 = jax('U229891973', 'U622491081')# ANSWER PART A
 
 high = 0
 jak = []
@@ -101,7 +104,7 @@ for u in res:
 		jak = [u]
 	elif jac == high:
 		jak.append(u)
-print str(jak)# ANSWER PART B
+answer6 = str(jak)# ANSWER PART B
 		
 #TEST to see if corrrect
 for j in jak:
@@ -114,6 +117,7 @@ for l in data:
 	helpful,total = l['helpful']['nHelpful'],l['helpful']['outOf']
 	avg.append(float(helpful)/float(total))
 a = sum(avg)/len(avg)# ANSWER PART A
+answer7 = a
 
 mse = 0
 absolute = 0
