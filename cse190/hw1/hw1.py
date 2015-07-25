@@ -112,8 +112,41 @@ mean_squared_error(y2, pred2)
 	
 
 
-#mean_squared_error(y_actual, y_predicted)
-mean_squared_error(y, y2)
+# Problem 1.1.5
+def featuree(datum):
+  feat = [1]
+  feat.append(datum['review/timeStruct']['hour'])
+  return feat
+
+def feature3(datum):
+  feat = [1]
+  feat.append(datum['review/timeStruct']['hour'])
+  feat.append(datum['review/taste'])
+  return feat
+  
+data1, data2 = split_list(data)
+  
+X = [featuree(d) for d in data1]
+y = [d['review/taste'] for d in data1]
+theta,residuals,rank,s = numpy.linalg.lstsq(X, y)
+
+Xy = [feature3(d) for d in data1]
+MSE = formula(Xy, theta[0], theta[1])
+
+pred = [(theta[0] + theta[1]*d[1]) for d in X]
+
+mean_squared_error(y, pred)
+
+X2 = [featuree(d) for d in data2]
+y2 = [d['review/taste'] for d in data2]
+theta,residuals,rank,s = numpy.linalg.lstsq(X2, y2)
+
+X2y2 = [feature3(d) for d in data1]
+MSE2 = formula(X2y2, theta[0], theta[1])
+
+pred2 = [(theta[0] + theta[1]*d[1]) for d in X2]
+
+mean_squared_error(y2, pred2)
 
 ##training set
 #2.99503282, 0.11690802
